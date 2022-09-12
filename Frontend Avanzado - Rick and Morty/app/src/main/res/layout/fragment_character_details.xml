@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fragment_character_details"
+    >
+
+    <ImageView
+        android:id="@+id/image_fragment_details"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        tools:srcCompat="@tools:sample/avatars"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/image_fragment_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Morty Smith"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_name"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        android:text="@string/species"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails1"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        android:text="@string/status"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails2"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        android:text="@string/gender"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails_specie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_name"
+        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
+        tools:text="Human"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_specie"
+        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
+        tools:text="Alive"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_status"
+        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
+        tools:text="Male"
+        android:layout_marginTop="10dp"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineaguia_vertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineaguia_vertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="350dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
