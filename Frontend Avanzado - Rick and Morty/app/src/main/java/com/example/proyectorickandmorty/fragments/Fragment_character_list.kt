@@ -23,7 +23,6 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
     private lateinit var recyclerView: RecyclerView
     private lateinit var characterList: MutableList<Character>
     private lateinit var toolbar: MaterialToolbar
-    private lateinit var character: Character
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,12 +30,6 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
         recyclerView = view.findViewById(R.id.recycler_characterList)
 
         toolbar = (activity as MainActivity).getToolBar()
-
-        setupRecycler()
-        setListeners()
-    }
-
-    private fun setupRecycler() {
 
         characterList = ArrayList()
 
@@ -49,6 +42,7 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                 if (response.isSuccessful && response.body() != null) {
                     characterList = response.body()!!.characters as MutableList<Character>
                     println(response.body())
+                    setupRecycler()
                 }
             }
 
@@ -58,7 +52,11 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
 
         })
 
+        setupRecycler()
+        setListeners()
+    }
 
+    private fun setupRecycler() {
         //characterList = RickAndMortyDB.getCharacters()
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)

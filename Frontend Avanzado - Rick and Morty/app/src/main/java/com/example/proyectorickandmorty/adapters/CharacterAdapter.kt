@@ -24,8 +24,10 @@ class CharacterAdapter(
         fun onCharacterClicked(character: Character, position: Int)
     }
 
-    class ViewHolder(private val view: View,
-                     private val listener: CharacterListener) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(
+        view: View,
+        private val listener: CharacterListener) : RecyclerView.ViewHolder(view) {
+
         private val imageType: ImageView = view.findViewById(R.id.image_itemCharacter_category)
         private val textName: TextView = view.findViewById(R.id.text_itemCharacter_name)
         private val textDetails: TextView = view.findViewById(R.id.text_itemCharacter_details)
@@ -42,7 +44,7 @@ class CharacterAdapter(
                 memoryCachePolicy(CachePolicy.DISABLED)
                 diskCachePolicy(CachePolicy.DISABLED)
             }
-            textName.text = character.name.toString()
+            textName.text = character.name
             textDetails.text = "${character.species} - ${character.status}"
             setListeners()
         }
