@@ -12,7 +12,7 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.example.proyectorickandmorty.R
-import com.example.proyectorickandmorty.entities.Character
+import com.example.proyectorickandmorty.datasource.model.Character
 
 class CharacterAdapter(
     private val dataSet: MutableList<Character>,
@@ -42,7 +42,7 @@ class CharacterAdapter(
                 memoryCachePolicy(CachePolicy.DISABLED)
                 diskCachePolicy(CachePolicy.DISABLED)
             }
-            textName.text = character.name
+            textName.text = character.name.toString()
             textDetails.text = "${character.species} - ${character.status}"
             setListeners()
         }

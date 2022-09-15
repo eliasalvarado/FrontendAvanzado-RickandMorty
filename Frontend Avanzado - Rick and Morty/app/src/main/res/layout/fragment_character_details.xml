@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragment_character_details"
+    tools:context=".fragments.fragment_character_details"
     >
 
     <ImageView
@@ -62,6 +62,26 @@
         />
 
     <TextView
+        android:id="@+id/text_characterDetails4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails3"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        android:text="@string/origin"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails4"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        android:text="@string/episode_appearances"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
         android:id="@+id/text_characterDetails_specie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,6 +108,26 @@
         app:layout_constraintTop_toBottomOf="@id/text_characterDetails_status"
         app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
         tools:text="Male"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails_origin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_gender"
+        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
+        tools:text="Unknown"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_characterDetails_episodes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_origin"
+        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
+        tools:text="52"
         android:layout_marginTop="10dp"
         />
 
