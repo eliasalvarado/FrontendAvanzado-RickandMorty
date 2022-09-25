@@ -13,4 +13,9 @@
         android:title="@string/ordenar_de_z_a"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_cerrar_sesion"
+        android:title="@string/cerrar_sesion"
+        app:showAsAction="never" />
+
 </menu>

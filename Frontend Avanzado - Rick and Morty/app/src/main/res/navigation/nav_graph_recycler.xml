@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_recycler"
-    app:startDestination="@id/fragment_character_list">
+    app:startDestination="@id/login">
 
     <fragment
         android:id="@+id/fragment_character_list"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragment_character_list_to_fragment_character_details"
             app:destination="@id/fragment_character_details" />
+        <action
+            android:id="@+id/action_fragment_character_list_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/fragment_character_details"
@@ -22,5 +25,17 @@
         <argument
             android:name="id"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.proyectorickandmorty.fragments.Fragment_login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_fragment_character_list"
+            app:destination="@id/fragment_character_list"
+            app:popUpTo="@id/nav_graph_recycler"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 </navigation>

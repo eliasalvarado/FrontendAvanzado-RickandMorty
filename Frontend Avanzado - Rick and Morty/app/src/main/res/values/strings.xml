@@ -9,4 +9,11 @@
     <string name="gender">Gender</string>
     <string name="origin">Origin</string>
     <string name="episode_appearances">Episode appearances</string>
+    <string name="correo">Correo</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="correo_label">alv21808@uvg.edu.gt</string>
+    <string name="ingreso_invalido">El correo y la contraseña ingresada no coinciden.</string>
+    <string name="correo_login">alv21808@uvg.edu.gt</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>

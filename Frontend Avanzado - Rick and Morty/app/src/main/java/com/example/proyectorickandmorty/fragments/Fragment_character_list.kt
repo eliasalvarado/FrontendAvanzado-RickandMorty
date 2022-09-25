@@ -1,8 +1,16 @@
 package com.example.proyectorickandmorty.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.findFragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +21,9 @@ import com.example.proyectorickandmorty.datasource.api.RetrofitInstance
 import com.example.proyectorickandmorty.datasource.model.AllApiResponse
 import com.example.proyectorickandmorty.datasource.model.Character
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +34,7 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
     private lateinit var recyclerView: RecyclerView
     private lateinit var characterList: MutableList<Character>
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var fragment_login: Fragment_login
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +42,8 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
         recyclerView = view.findViewById(R.id.recycler_characterList)
 
         toolbar = (activity as MainActivity).getToolBar()
+
+        fragment_login = Fragment_login()
 
         characterList = ArrayList()
 
@@ -78,6 +92,16 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                     recyclerView.adapter!!.notifyDataSetChanged()
                     true
                 }
+                R.id.menu_cerrar_sesion -> {
+                    requireView().findNavController().navigate(
+                        fragment_character_listDirections.actionFragmentCharacterListToLogin()
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        fragment_login.deleteDataStore()
+                    }
+                    //eliminarKey()
+                    true
+                }
                 else -> false
             }
         }
@@ -89,5 +113,9 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                 character.id
             )
         )
+    }
+
+    private suspend fun eliminarKey(){
+        //
     }
 }

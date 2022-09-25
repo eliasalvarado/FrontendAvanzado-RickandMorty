@@ -1,7 +1,9 @@
 package com.example.proyectorickandmorty.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -58,16 +60,26 @@ class MainActivity : AppCompatActivity() {
     private fun setNavigationChange() {
         navController.addOnDestinationChangedListener {_, destination, _ ->
             when(destination.id) {
+                R.id.login -> {
+                    toolbar.visibility = View.GONE
+                }
                 R.id.fragment_character_list -> {
+                    toolbar.visibility = View.VISIBLE
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                    supportActionBar?.setDisplayShowHomeEnabled(true)
+                    toolbar.navigationIcon = null
                     toolbar.title = "Characters"
                     toolbar.menu.findItem(R.id.menu_item_az).isVisible = true
                     toolbar.menu.findItem(R.id.menu_item_za).isVisible = true
+                    toolbar.menu.findItem(R.id.menu_cerrar_sesion).isVisible = true
                 }
 
                 R.id.fragment_character_details -> {
+                    toolbar.visibility = View.VISIBLE
                     toolbar.title = "Character Detail"
                     toolbar.menu.findItem(R.id.menu_item_az).isVisible = false
                     toolbar.menu.findItem(R.id.menu_item_za).isVisible = false
+                    toolbar.menu.findItem(R.id.menu_cerrar_sesion).isVisible = false
                 }
             }
         }
