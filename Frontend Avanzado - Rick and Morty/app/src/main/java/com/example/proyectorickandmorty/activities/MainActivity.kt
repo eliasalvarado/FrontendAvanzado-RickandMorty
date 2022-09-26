@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         navController = navHostController.navController
 
 
-        val appbarConfig = AppBarConfiguration(navController.graph)
+        //val appbarConfig = AppBarConfiguration(navController.graph)
+        val appbarConfig = AppBarConfiguration(setOf(R.id.fragment_character_list))
 
         toolbar = findViewById(R.id.toolbar_basicToolbarActivity)
         toolbar.setupWithNavController(navController, appbarConfig)
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     toolbar.visibility = View.VISIBLE
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     supportActionBar?.setDisplayShowHomeEnabled(true)
-                    toolbar.navigationIcon = null
+                    //toolbar.navigationIcon = null
                     toolbar.title = "Characters"
                     toolbar.menu.findItem(R.id.menu_item_az).isVisible = true
                     toolbar.menu.findItem(R.id.menu_item_za).isVisible = true

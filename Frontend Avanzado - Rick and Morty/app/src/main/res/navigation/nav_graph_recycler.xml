@@ -15,7 +15,9 @@
             app:destination="@id/fragment_character_details" />
         <action
             android:id="@+id/action_fragment_character_list_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:popUpTo="@id/nav_graph_recycler"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/fragment_character_details"

@@ -97,7 +97,7 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                         fragment_character_listDirections.actionFragmentCharacterListToLogin()
                     )
                     CoroutineScope(Dispatchers.IO).launch {
-                        fragment_login.deleteDataStore()
+                        fragment_login.deleteDataStore(requireContext())
                     }
                     //eliminarKey()
                     true

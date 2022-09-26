@@ -38,7 +38,7 @@ class Fragment_login : Fragment(R.layout.fragment_login) {
         inputPassword = view.findViewById(R.id.input_contraseña)
 
         CoroutineScope(Dispatchers.Main).launch {
-            if(getValueFromCorreo(getString(R.string.correo_login)) == "alv21808@uvg.edu.gt")
+            if(getValueFromCorreo() == "alv21808@uvg.edu.gt")
             {
                 requireView().findNavController().navigate(
                     Fragment_loginDirections.actionLoginToFragmentCharacterList()
@@ -53,11 +53,10 @@ class Fragment_login : Fragment(R.layout.fragment_login) {
         buttonLogin.setOnClickListener{
             val correo = inputCorreo.editText!!.text.toString()
             val password = inputPassword.editText!!.text.toString()
-            if(correo == password && correo.isNotEmpty() && password.isNotEmpty())
+            if(correo == password && correo.isNotEmpty() && password.isNotEmpty() && correo == "alv21808@uvg.edu.gt")
             {
                 CoroutineScope(Dispatchers.IO).launch {
                     saveCorreoLogin(
-                        correo = correo,
                         password = password
                     )
                     CoroutineScope(Dispatchers.Main).launch {
@@ -84,24 +83,25 @@ class Fragment_login : Fragment(R.layout.fragment_login) {
         }
     }
 
-    private suspend fun saveCorreoLogin(correo: String, password: String) {
-        val dataStoreKey = stringPreferencesKey(correo)
+    private suspend fun saveCorreoLogin(password: String) {
+        val dataStoreKey = stringPreferencesKey("correo")
         context?.dataStore?.edit { settings ->
             settings[dataStoreKey] = password
         }
     }
 
-    private suspend fun getValueFromCorreo(correo: String) : String? {
-        val dataStoreKey = stringPreferencesKey(correo)
+    private suspend fun getValueFromCorreo() : String? {
+        val dataStoreKey = stringPreferencesKey("correo")
         val preferences = context?.dataStore?.data?.first()
 
         return preferences?.get(dataStoreKey) ?: "null"
     }
 
-    public suspend fun deleteDataStore()
+    public suspend fun deleteDataStore(context: Context)
     {
-        context?.dataStore?.edit { settings ->
-            settings.clear()
+        val dataStoreKey = stringPreferencesKey("correo")
+        context.dataStore.edit { settings ->
+            settings.remove(dataStoreKey)
         }
     }
 }
