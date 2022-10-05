@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
                     toolbar.menu.findItem(R.id.menu_item_az).isVisible = true
                     toolbar.menu.findItem(R.id.menu_item_za).isVisible = true
                     toolbar.menu.findItem(R.id.menu_cerrar_sesion).isVisible = true
+                    toolbar.menu.findItem(R.id.menu_sincronizar).isVisible = true
+                    toolbar.menu.findItem(R.id.menu_eliminar).isVisible = false
                 }
 
                 R.id.fragment_character_details -> {
@@ -81,6 +83,9 @@ class MainActivity : AppCompatActivity() {
                     toolbar.menu.findItem(R.id.menu_item_az).isVisible = false
                     toolbar.menu.findItem(R.id.menu_item_za).isVisible = false
                     toolbar.menu.findItem(R.id.menu_cerrar_sesion).isVisible = false
+                    toolbar.menu.findItem(R.id.menu_sincronizar).isVisible = true
+                    //toolbar.menu.findItem(R.id.menu_sincronizar).icon.setTint(R.)
+                    toolbar.menu.findItem(R.id.menu_eliminar).isVisible = true
                 }
             }
         }

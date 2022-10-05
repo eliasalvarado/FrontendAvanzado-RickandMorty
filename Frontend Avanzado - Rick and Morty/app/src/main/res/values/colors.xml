@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="base_icon_color">#2F2F2F</color>
     <color name="topbar_color">#477B9D</color>
+    <color name="topbar_menu_sincronizar">#3FADAC</color>
 </resources>

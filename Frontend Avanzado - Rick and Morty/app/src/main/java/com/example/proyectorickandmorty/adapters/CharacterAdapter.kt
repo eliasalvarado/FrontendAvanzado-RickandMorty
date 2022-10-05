@@ -12,7 +12,7 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.example.proyectorickandmorty.R
-import com.example.proyectorickandmorty.datasource.model.Character
+import com.example.proyectorickandmorty.data.local_source.model.Character
 
 class CharacterAdapter(
     private val dataSet: MutableList<Character>,

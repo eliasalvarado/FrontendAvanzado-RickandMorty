@@ -17,118 +17,119 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-
         />
 
-    <TextView
-        android:id="@+id/text_characterDetails_name"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_characterDetail_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/image_fragment_details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Morty Smith"
-        />
-
-    <TextView
-        android:id="@+id/text_characterDetails1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_name"
+        app:layout_constraintTop_toTopOf="@id/lineaguia_horizontal1"
         app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
-        android:text="@string/species"
-        android:layout_marginTop="40dp"
-        />
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:hint="@string/name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_characterDetails2"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_characterDetail_Specie"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails1"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/input_characterDetail_name"
         app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
-        android:text="@string/status"
-        android:layout_marginTop="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:hint="@string/species"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_characterDetails3"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_characterDetail_Status"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails2"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/input_characterDetail_Specie"
         app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
-        android:text="@string/gender"
-        android:layout_marginTop="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:hint="@string/status"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_characterDetails4"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_characterDetail_Gender"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails3"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/input_characterDetail_Status"
         app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
-        android:text="@string/origin"
-        android:layout_marginTop="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:hint="@string/gender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_characterDetails5"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_characterDetail_Origin"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails4"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/input_characterDetail_Gender"
         app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
-        android:text="@string/episode_appearances"
-        android:layout_marginTop="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:hint="@string/origin"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_characterDetails_specie"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_characterDetail_Episodes"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_name"
-        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
-        tools:text="Human"
-        android:layout_marginTop="40dp"
-        />
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/input_characterDetail_Origin"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:hint="@string/episode_appearances"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_characterDetails_status"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_characterDetail_Guardar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_specie"
-        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
-        tools:text="Alive"
-        android:layout_marginTop="10dp"
-        />
-
-    <TextView
-        android:id="@+id/text_characterDetails_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_status"
-        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
-        tools:text="Male"
-        android:layout_marginTop="10dp"
-        />
-
-    <TextView
-        android:id="@+id/text_characterDetails_origin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_gender"
-        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
-        tools:text="Unknown"
-        android:layout_marginTop="10dp"
-        />
-
-    <TextView
-        android:id="@+id/text_characterDetails_episodes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_characterDetails_origin"
-        app:layout_constraintEnd_toStartOf="@id/lineaguia_vertical2"
-        tools:text="52"
-        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/lineaguia_vertical1"
+        app:layout_constraintEnd_toEndOf="@id/lineaguia_vertical2"
+        android:text="@string/guardar"
+        android:layout_marginBottom="@dimen/margin_medium"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -145,6 +146,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="350dp"
         />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineaguia_horizontal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="180dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

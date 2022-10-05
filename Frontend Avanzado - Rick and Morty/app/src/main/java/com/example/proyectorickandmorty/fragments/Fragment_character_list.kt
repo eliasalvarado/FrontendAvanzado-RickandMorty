@@ -1,25 +1,19 @@
 package com.example.proyectorickandmorty.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.findFragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.proyectorickandmorty.activities.MainActivity
 import com.example.proyectorickandmorty.R
 import com.example.proyectorickandmorty.adapters.CharacterAdapter
+import com.example.proyectorickandmorty.data.local_source.Database
 import com.example.proyectorickandmorty.datasource.api.RetrofitInstance
 import com.example.proyectorickandmorty.datasource.model.AllApiResponse
-import com.example.proyectorickandmorty.datasource.model.Character
+import com.example.proyectorickandmorty.data.local_source.model.Character
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +29,7 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
     private lateinit var characterList: MutableList<Character>
     private lateinit var toolbar: MaterialToolbar
     private lateinit var fragment_login: Fragment_login
+    private lateinit var database: Database
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,6 +42,18 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
 
         characterList = ArrayList()
 
+        database = Room.databaseBuilder(
+            requireContext(),
+            Database::class.java,
+            "dbname"
+        ).build()
+
+        getUsers()
+        setListeners()
+    }
+
+    private fun cargarDatosInternet() {
+        characterList.clear()
         //getCrypto. No tiene ningun parametro, sería un https://rickandmortyapi.com/api/character
         RetrofitInstance.api.getCrypto().enqueue(object: Callback<AllApiResponse> {
             override fun onResponse(
@@ -54,7 +61,8 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                 response: Response<AllApiResponse>
             ) {
                 if (response.isSuccessful && response.body() != null) {
-                    characterList = response.body()!!.characters as MutableList<Character>
+                    var characterListAPI = response.body()!!.characters as MutableList<com.example.proyectorickandmorty.datasource.model.Character>
+                    agregarAPIaLaLista(characterListAPI)
                     println(response.body())
                     setupRecycler()
                 }
@@ -65,17 +73,31 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
             }
 
         })
+    }
 
-        setupRecycler()
-        setListeners()
+    private fun agregarAPIaLaLista(listaAPI: MutableList<com.example.proyectorickandmorty.datasource.model.Character>){
+        for(character in listaAPI){
+            characterList.add(
+                Character(
+                    episode = character.episode.size,
+                    gender = character.gender,
+                    id = character.id,
+                    image = character.image,
+                    location = character.location.name,
+                    name = character.name,
+                    origin = character.origin.name,
+                    species = character.species,
+                    status = character.status,
+                    type = character.type
+                )
+            )
+        }
     }
 
     private fun setupRecycler() {
-        //characterList = RickAndMortyDB.getCharacters()
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = CharacterAdapter(characterList, this)
-
     }
 
     private fun setListeners() {
@@ -92,17 +114,39 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                     recyclerView.adapter!!.notifyDataSetChanged()
                     true
                 }
+
+                R.id.menu_sincronizar -> {
+                    cargarDatosInternet()
+                    true
+                }
+
                 R.id.menu_cerrar_sesion -> {
                     requireView().findNavController().navigate(
                         fragment_character_listDirections.actionFragmentCharacterListToLogin()
                     )
                     CoroutineScope(Dispatchers.IO).launch {
                         fragment_login.deleteDataStore(requireContext())
+                        database.characterDao().deleteAll()
                     }
-                    //eliminarKey()
                     true
                 }
                 else -> false
+            }
+        }
+    }
+
+    private fun getUsers() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val characters = database.characterDao().getCharacters()
+            if(characters.isEmpty()){
+                cargarDatosInternet()
+            }
+            else {
+                characterList.clear()
+                characterList.addAll(characters)
+                CoroutineScope(Dispatchers.Main).launch {
+                    setupRecycler()
+                }
             }
         }
     }
@@ -113,9 +157,5 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                 character.id
             )
         )
-    }
-
-    private suspend fun eliminarKey(){
-        //
     }
 }
