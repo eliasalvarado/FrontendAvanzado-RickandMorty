@@ -92,6 +92,11 @@ class fragment_character_list : Fragment(R.layout.fragment_character_list), Char
                 )
             )
         }
+        for(character in characterList){
+            CoroutineScope(Dispatchers.IO).launch {
+                database.characterDao().insert(character)
+            }
+        }
     }
 
     private fun setupRecycler() {

@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.room.Room
 import coil.load
@@ -81,7 +83,48 @@ class fragment_character_details : Fragment(R.layout.fragment_character_details)
                     true
                 }
 
+                R.id.menu_eliminar -> {
+                    showDeleteDialog()
+                    true
+                }
+
                 else -> false
+            }
+        }
+    }
+
+    private fun showDeleteDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle("Advertencia")
+            setMessage("¿Estás seguro que deseas eliminar este personaje?")
+            setPositiveButton("Eliminar"
+            ) { _, _ ->
+                eliminarCharacter()
+            }
+            setNegativeButton("Cancelar") { _, _ -> }
+            show()
+        }
+    }
+
+    private fun eliminarCharacter() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val rowsDeleted = database.characterDao().delete(character)
+            CoroutineScope(Dispatchers.Main).launch {
+                if (rowsDeleted > 0) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Personaje eliminado exitosamente",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "No se elimino personaje con ID ${character.id}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                requireActivity().onBackPressed()
             }
         }
     }
@@ -139,20 +182,22 @@ class fragment_character_details : Fragment(R.layout.fragment_character_details)
     }
 
     private fun setDetails() {
-        image.load(character.image){
-            placeholder(R.drawable.ic_downloading)
-            error(R.drawable.ic_error)
-            transformations(CircleCropTransformation())
-            memoryCachePolicy(CachePolicy.ENABLED)
-            diskCachePolicy(CachePolicy.ENABLED)
-        }
+        CoroutineScope(Dispatchers.Main).launch {
+            image.load(character.image){
+                placeholder(R.drawable.ic_downloading)
+                error(R.drawable.ic_error)
+                transformations(CircleCropTransformation())
+                memoryCachePolicy(CachePolicy.ENABLED)
+                diskCachePolicy(CachePolicy.ENABLED)
+            }
 
-        inputName.editText!!.setText(character.name)
-        inputSpecie.editText!!.setText(character.species)
-        inputStatus.editText!!.setText(character.status)
-        inputGender.editText!!.setText(character.gender)
-        inputOrigin.editText!!.setText(character.origin)
-        inputEpisodes.editText!!.setText(character.episode.toString())
+            inputName.editText!!.setText(character.name)
+            inputSpecie.editText!!.setText(character.species)
+            inputStatus.editText!!.setText(character.status)
+            inputGender.editText!!.setText(character.gender)
+            inputOrigin.editText!!.setText(character.origin)
+            inputEpisodes.editText!!.setText(character.episode.toString())
+        }
     }
 
 }

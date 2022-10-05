@@ -1,9 +1,6 @@
 package com.example.proyectorickandmorty.data.local_source
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.Update
-import androidx.room.Delete
+import androidx.room.*
 import com.example.proyectorickandmorty.data.local_source.model.Character
 
 
@@ -18,6 +15,9 @@ interface CharacterDao {
 
     @Update
     suspend fun update(character: Character)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(character: Character)
 
     @Delete
     suspend fun delete(character: Character): Int
