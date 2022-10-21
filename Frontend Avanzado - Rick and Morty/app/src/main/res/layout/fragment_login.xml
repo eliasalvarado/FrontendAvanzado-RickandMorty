@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Fragment_login">
+    tools:context=".ui.character_list.login.Fragment_login">
 
     <ImageView
         android:id="@+id/im_rickandmorty"
@@ -63,6 +63,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/input_contraseña"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        />
+
     <TextView
         android:id="@+id/label_text"
         android:layout_width="wrap_content"
@@ -73,5 +83,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/correo_label"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

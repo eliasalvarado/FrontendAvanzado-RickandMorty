@@ -1,4 +1,4 @@
-package com.example.proyectorickandmorty.fragments
+package com.example.proyectorickandmorty.ui.character_list.login
 
 import android.content.Context
 import android.os.Bundle

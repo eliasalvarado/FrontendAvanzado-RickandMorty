@@ -14,3 +14,14 @@ data class Character(
     val type: String,
     val url: String
 )
+
+fun Character.mapToModel(): com.example.proyectorickandmorty.datasource.model.Character = Character(
+    id = id.toInt(),
+    name = name,
+    status = status,
+    species = species,
+    gender = gender,
+    image = image,
+    origin = origin,
+    episode = episode
+)

@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.proyectorickandmorty.fragments.Fragment_login"
+        android:name="com.example.proyectorickandmorty.ui.character_list.login.Fragment_login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

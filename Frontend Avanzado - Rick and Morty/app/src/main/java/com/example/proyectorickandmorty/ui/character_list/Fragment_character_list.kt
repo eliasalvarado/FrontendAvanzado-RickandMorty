@@ -14,6 +14,7 @@ import com.example.proyectorickandmorty.data.local_source.Database
 import com.example.proyectorickandmorty.datasource.api.RetrofitInstance
 import com.example.proyectorickandmorty.datasource.model.AllApiResponse
 import com.example.proyectorickandmorty.data.local_source.model.Character
+import com.example.proyectorickandmorty.ui.character_list.login.Fragment_login
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -9,10 +9,10 @@ import retrofit2.http.Path
 interface CryptoAPI {
 
     @GET("/api/character")
-    fun getCrypto(): Call<AllApiResponse>
+    fun getCrypto():AllApiResponse
 
     @GET("/api/character/{id}")
     fun getCharacter(
         @Path("id") id: Int
-    ): Call<Character>
+    ): Character
 }
